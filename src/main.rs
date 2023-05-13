@@ -10,10 +10,12 @@ fn main() -> std::io::Result<()> {
     let listener = TcpListener::bind("127.0.0.1:7882").unwrap();
 
     for stream in listener.incoming() {
-        match stream {
-            Ok(stream) => handle_connection(stream),
-            Err(_) => println!("Unable to handle stream"),
-        };
+        let stream = stream.unwrap();
+
+        // If you run this code and load /sleep in your browser, then / in two more browser tabs, you’ll indeed see that the requests
+        // to / don’t have to wait for /sleep to finish. However, as we mentioned, this will
+        // eventually overwhelm the system because you’d be making new threads without any limit.
+        thread::spawn(|| handle_connection(stream));
     }
 
     Ok(())
@@ -25,9 +27,6 @@ fn handle_connection(mut stream: TcpStream) {
 
     let (status_line, filename) = match &request_line[..] {
         "GET / HTTP/1.1" => ("HTTP/1.1 200 OK", "hello.html"),
-        // If you enter /sleep and then load /, you’ll see that /
-        // waits until sleep has slept for its full 5 seconds before loading.
-        // This is a clear disadvantage for single-threaded webservers
         "GET /sleep HTTP/1.1" => {
             thread::sleep(Duration::from_secs(5));
             ("HTTP/1.1 200 OK", "hello.html")
