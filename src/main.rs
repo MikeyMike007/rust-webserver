@@ -25,6 +25,9 @@ fn handle_connection(mut stream: TcpStream) {
 
     let (status_line, filename) = match &request_line[..] {
         "GET / HTTP/1.1" => ("HTTP/1.1 200 OK", "hello.html"),
+        // If you enter /sleep and then load /, you’ll see that /
+        // waits until sleep has slept for its full 5 seconds before loading.
+        // This is a clear disadvantage for single-threaded webservers
         "GET /sleep HTTP/1.1" => {
             thread::sleep(Duration::from_secs(5));
             ("HTTP/1.1 200 OK", "hello.html")
