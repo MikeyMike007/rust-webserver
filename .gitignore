@@ -1,0 +1,14 @@
+# Rust binary files
+target/
+
+# Generated documentation
+doc/
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Build artifacts
+Cargo.lock
+*.rs.bk
+
