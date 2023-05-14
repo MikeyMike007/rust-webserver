@@ -1,0 +1,12 @@
+Worker 0 got a job; executing.
+Worker 1 got a job; executing.
+Worker 3 got a job; executing.
+Worker 2 got a job; executing.
+Worker 0 got a job; executing.
+Shutting down
+Shutting down worker: 0
+Worker 1 got a job; executing.
+Worker 3 disconnected; shutting down
+Worker 2 disconnected; shutting down
+Worker 0 disconnected; shutting down
+Shutting down worker: 1
