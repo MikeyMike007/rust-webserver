@@ -1,12 +1,26 @@
-Worker 0 got a job; executing.
-Worker 1 got a job; executing.
-Worker 3 got a job; executing.
-Worker 2 got a job; executing.
-Worker 0 got a job; executing.
-Shutting down
+thread_id: 0
+Worker with id: 0 constructed
+thread_id: 1
+Worker with id: 1 constructed
+thread_id: 2
+Worker with id: 2 constructed
+thread_id: 3
+Worker with id: 3 constructed
+Worker with id: 2 received job
+Worker with id: 2 received job
+Worker with id: 2 received job
+Worker with id: 2 received job
+Worker with id: 2 received job
+Worker with id: 2 received job
+Worker with id: 2 received job
+Worker with id: 2 received job
+Worker with id: 2 received job
 Shutting down worker: 0
-Worker 1 got a job; executing.
-Worker 3 disconnected; shutting down
-Worker 2 disconnected; shutting down
-Worker 0 disconnected; shutting down
+Worker with id: 2 received job
+Shutting down loop of worker id: 2
+Shutting down loop of worker id: 3
+Shutting down loop of worker id: 1
+Shutting down loop of worker id: 0
 Shutting down worker: 1
+Shutting down worker: 2
+Shutting down worker: 3
