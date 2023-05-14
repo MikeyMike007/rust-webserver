@@ -6,16 +6,16 @@ use std::{
     time::Duration,
 };
 
+use multi_threaded_web_server::ThreadPool;
+
 fn main() -> std::io::Result<()> {
     let listener = TcpListener::bind("127.0.0.1:7882").unwrap();
+    let pool = ThreadPool::new(4);
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
 
-        // If you run this code and load /sleep in your browser, then / in two more browser tabs, you’ll indeed see that the requests
-        // to / don’t have to wait for /sleep to finish. However, as we mentioned, this will
-        // eventually overwhelm the system because you’d be making new threads without any limit.
-        thread::spawn(|| handle_connection(stream));
+        pool.execute(|| handle_connection(stream));
     }
 
     Ok(())
